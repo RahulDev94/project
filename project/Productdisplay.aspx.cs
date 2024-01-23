@@ -9,27 +9,25 @@ using System.Data.SqlClient;
 
 namespace project
 {
-    public partial class Userhome : System.Web.UI.Page
+    public partial class Productdisplay : System.Web.UI.Page
     {
         conectionClass1 obj = new conectionClass1();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                string s = "select*from CatTab_1";
+                string s = "select*from prodTab_1";
                 DataSet ds = obj.Fn_DataAdapter(s);
                 DataList1.DataSource = ds;
                 DataList1.DataBind();
             }
-
-
         }
 
         protected void ImageButton1_Command(object sender, CommandEventArgs e)
         {
-            int Cat_id = Convert.ToInt32(e.CommandArgument);
-            Session["Cat_id"] = Cat_id;
-            Response.Redirect("Productdisplay.aspx");
+            int pdtid = Convert.ToInt32(e.CommandArgument);
+            Session["Pdt_id"] = pdtid;
+            Response.Redirect("Productview.aspx");
         }
     }
-    }
+}
